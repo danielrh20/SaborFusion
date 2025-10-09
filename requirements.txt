@@ -1,0 +1,6 @@
+Django
+psycopg2-binary  # Adaptador de PostgreSQL
+gunicorn         # Servidor de producción simple
+pillow           # Para el manejo de imágenes (fotos de recetas)
+django-crispy-forms 
+crispy-bootstrap5   

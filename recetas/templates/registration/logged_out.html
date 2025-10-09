@@ -1,0 +1,15 @@
+{% extends 'recetas/base.html' %}
+{% block title %}Sesión Cerrada{% endblock %}
+
+{% block content %}
+<div class="container my-5 text-center">
+    <h1 class="display-4" style="color: #ff6f61;">¡Sesión Cerrada! 👋</h1>
+    <p class="lead mt-4">Has cerrado la sesión con éxito.</p>
+    
+    <div class="mt-4">
+        <a href="{% url 'login' %}" class="btn btn-primary btn-lg me-3">Iniciar Sesión de Nuevo</a>
+        
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg">Volver a la Página Principal</a>
+    </div>
+</div>
+{% endblock %}

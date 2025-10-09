@@ -1,0 +1,44 @@
+# Contenido de docker-compose.yml
+version: '3.8'
+
+services:
+  web:
+    # Construye la imagen usando el Dockerfile en la carpeta actual
+    build: .
+    # Mapea el puerto local 8000 al puerto 8000 del contenedor
+    ports:
+      - "8000:8000"
+    # Reinicia automáticamente
+    restart: always
+    # Conecta este servicio con el de la base de datos
+    depends_on:
+      - db
+    # Monta la carpeta local en el contenedor para desarrollo (cambios en vivo)
+    volumes:
+      - .:/usr/src/app/
+    # Comando de inicio: crea un script shell para ejecutarlo, por ahora un placeholder
+    # **IMPORTANTE**: Necesitaremos crear el proyecto Django primero
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    environment:
+      # Variables de entorno para la conexión a la BD
+      POSTGRES_NAME: blogdb
+      POSTGRES_USER: django_user
+      POSTGRES_PASSWORD: password123
+      POSTGRES_HOST: db # El nombre del servicio DB
+      POSTGRES_PORT: 5432
+
+  db:
+    # Usamos una imagen oficial de PostgreSQL
+    image: postgres:15-alpine
+    # Mantiene los datos persistentes incluso si el contenedor se detiene
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      # Variables de entorno para inicializar la BD
+      POSTGRES_DB: blogdb
+      POSTGRES_USER: django_user
+      POSTGRES_PASSWORD: password123
+
+# Volumen para la persistencia de datos de PostgreSQL
+volumes:
+  postgres_data:

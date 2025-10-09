@@ -1,0 +1,311 @@
+.receta-card {
+            height: 100%; /* Permite que las tarjetas se adapten */
+            display: flex;
+            flex-direction: column;
+        }
+        .receta-img {
+            height: 200px; /* Altura fija para la imagen */
+            object-fit: cover;
+            width: 100%;
+        }
+        .receta-card .card-body {
+            flex-grow: 1; /* Permite que el cuerpo ocupe el espacio restante */
+        }
+        .receta-card .card-footer {
+            margin-top: auto; /* Empuja el footer hacia abajo */
+        }
+        .hero-section {
+            background: linear-gradient(to right, #fff5ee, #fef3f0);
+            padding: 200px 0;
+        }
+
+        /* === Tarjetas de Recetas === */
+        .receta-card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .receta-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .receta-img {
+        height: 300px;
+        object-fit: cover;
+        }
+
+        .badge-dificultad {
+            /* Base style for the new badge */
+        font-size: 0.75rem; /* Hace la fuente un poco más pequeña */
+        font-weight: 600;
+        padding: 0.3em 0.6em;
+        border-radius: 6px;
+        }
+
+        .dificultad-FACIL {
+        background-color: #28a745; /* Verde Bootstrap */
+        color: white;
+        }
+
+        .dificultad-MEDIO {
+        background-color: #ffc107; /* Amarillo/Dorado Bootstrap */
+        color: #212529; /* Texto oscuro para contraste */
+        }
+
+        .dificultad-DIFICIL {
+        background-color: #dc3545; /* Rojo Bootstrap */
+        color: white;
+        }
+
+        /* Etiqueta de categoría */
+        .receta-card .badge-categoria{
+        background-color: #eceef2 !important;
+        color: #000000 !important;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.3em 0.6em;
+        border-radius: 6px;
+        }
+
+        /* Título */
+        .receta-card .card-title {
+        color: #101828;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        }
+
+        /* Descripción */
+        .receta-card .card-text {
+        color: #6b7280;
+        font-size: 0.9rem;
+        }
+
+        /* Botón Ver Receta */
+        .receta-card .btn-outline-primary {
+        border-color: #101828;
+        color: #101828;
+        font-weight: 500;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        }
+
+        .receta-card .btn-outline-primary:hover {
+        background-color: #101828;
+        color: #fff;
+        }
+
+        /* Iconos inferiores */
+        .receta-card .text-muted i {
+        color: #6b7280;
+        }
+        
+        /*Navbar -------------------------------------------------------*/
+        .category-nav-pills .nav-link {
+            border-radius: 50rem; /* Pill shape */
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #dee2e6;
+            color: #495057;
+        }
+        .category-nav-pills .nav-link.active {
+            background-color: #ff6f61; /* Color de tu marca */
+            color: white;
+            border-color: #ff6f61;
+        }
+
+        .btn-custom {
+        background-color: #f54a00;
+        color: white;
+        border: none;
+        }
+
+        .btn-custom:hover {
+        background-color: #ca3500; /* un tono más oscuro al pasar el mouse */
+        }
+
+        /* ---- BOTONES DE CATEGORÍA ---- */
+        .btn-categoria {
+        border: 1px solid #10182849;
+        background-color: #ffffff;
+        color: #101828;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 0.2rem 0.8rem;
+        }
+
+        .btn-categoria:hover {
+        border: 1px solid #10182849;
+        background-color: #cacaca;
+        color: #101828;
+        }
+
+        .btn-categoria.active {
+        background-color: #f54a00;
+        border-color: #f54a00;
+        color: #ffffff;
+        }
+
+        .custom-container {
+        max-width: 450px;       /* Limita el ancho del bloque */
+        margin-right: 0;     /* Centra automáticamente */
+        margin-left: 0;      /* Centra automáticamente */
+        padding-right: 0;  /* Reduce el margen interno derecho */
+        padding-left: 0;   /* Opcional: reduce también el izquierdo */
+        }
+
+        /* --- Navbar General --- */
+        .navbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #eee;
+        }
+
+        /* --- Enlaces del centro --- */
+        .nav-link {
+        color: #101828;
+        font-weight: 500;
+        transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-link:hover {
+        color: #f54a00;
+        transform: translateY(-1px);
+        }
+
+        .nav-link.active {
+        color: #f54a00;
+        font-weight: 600;
+        }
+
+        /* --- Botones personalizados --- */
+        .btn-custom {
+        background-color: #f54a00;
+        color: white;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+        background-color: #d94400;
+        color: #fff;
+        }
+
+        .navbar-brand {
+        font-size: 1.25rem;
+        letter-spacing: 0.5px;
+        }
+
+        .lucide {
+        transition: transform 0.2s ease;
+        }
+
+        a:hover .lucide {
+        transform: rotate(-5deg);
+        }
+
+/* ----------- receta detalle ------------ */
+        
+        .list-group-numbered {
+            list-style-type: none;
+            list-style-position: inside;
+            padding-left: 0;
+        }
+
+        .list-group-item {
+            position: relative; /* Necesario para posicionar el círculo con ::before */
+            padding-left: 3.5rem; /* Aumenta el padding para dar espacio al círculo */
+            border-left: none; /* Opcional: limpiar bordes que no necesites */
+            border-right: none;
+        }
+
+        /* 3. Crear el CÍRCULO GRANDE Y NUMERADO usando ::before */
+        .list-group-item::before {
+            content: counter(paso-counter); /* Toma el valor del contador */
+            counter-increment: paso-counter; /* Incrementa el contador por cada <li> */
+            
+            /* Estilos del Círculo */
+            width: 2.2rem;
+            height: 2.2rem;
+            line-height: 2.2rem; /* Centra el texto verticalmente */
+            
+            /* Fondo y Borde */
+            background-color: #101828; /* Rojo/Naranja de tu marca */
+            color: white;
+            border-radius: 50%; /* Lo convierte en un círculo */
+            
+            /* Posicionamiento */
+            position: absolute;
+            left: 0.5rem; /* Posiciona el círculo a la izquierda */
+            top: 50%; /* Alineación vertical */
+            transform: translateY(-50%);
+            
+            /* Texto */
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* 4. Opcional: Añadir una línea vertical entre los pasos (como en algunas vistas) */
+        .list-group-numbered .list-group-item:not(:last-child) {
+            border-bottom: 1px dashed #ced4da; /* Línea de puntos para separar pasos */
+        }
+
+/* ----------- SUBIR RECERTA ------------ */
+
+/* Animación sutil al cargar */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Estilo del formulario */
+.form-receta input,
+.form-receta select,
+.form-receta textarea {
+  border-radius: 10px !important;
+  border: 1px solid #d0d5dd;
+  padding: 12px;
+  font-size: 1rem;
+  color: #101828;
+  transition: all 0.3s ease;
+}
+
+.form-receta input:focus,
+.form-receta select:focus,
+.form-receta textarea:focus {
+  border-color: #f54a00;
+  box-shadow: 0 0 0 0.2rem rgba(245, 74, 0, 0.25);
+}
+
+/* Botón principal */
+.btn-guardar {
+  background-color: #f54a00;
+  color: white;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-guardar:hover {
+  background-color: #d84300;
+  transform: translateY(-1px);
+}
+
+/* Tarjeta principal */
+.card {
+  background-color: #fff;
+}
+
+.card h2 {
+  font-size: 1.8rem;
+}
+

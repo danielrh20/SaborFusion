@@ -1,0 +1,34 @@
+{% extends 'recetas/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4 fw-bold">Iniciar Sesión</h2>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-custom">Entrar</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <small class="text-muted">
+                            ¿No tienes cuenta?
+                            <a href="{% url 'registro' %}" class="text-decoration-none">Regístrate aquí</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

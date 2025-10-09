@@ -1,0 +1,94 @@
+{% extends 'recetas/base.html' %}
+{% load static %}
+
+{% block title %}{{ object.titulo }}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    
+    <header class="mb-4">
+        <h1 class="display-4 fw-bold">{{ object.titulo }}</h1>
+        <p class="lead text-muted">{{ object.descripcion }}</p>
+    </header>
+
+    <div class="row mb-5">
+        
+        <div class="col-lg-7">
+            <img src="{{ object.imagen.url }}" class="img-fluid rounded shadow-lg" alt="{{ object.titulo }}" style="object-fit: cover; max-height: 400px; width: 100%;">
+            
+            <div class="d-flex my-3">
+                <span class="badge bg-secondary text-white me-2">{{ object.categoria }}</span>
+                <span class="badge badge-dificultad dificultad-{{ object.dificultad }}">
+                    {{ object.get_dificultad_display }}
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center mb-4 text-muted small">
+                <i class="bi bi-clock me-1"></i> {{ object.tiempo_preparacion|default:'N/A' }} 
+                <span class="vr mx-2"></span>
+                <i class="bi bi-person-fill me-1"></i> {{ object.porciones|default:'N/A' }} servings 
+                <span class="vr mx-2"></span>
+                <i class="bi bi-star-fill text-warning me-1"></i> 
+                {{ object.promedio_calificacion|floatformat:1 }} (by {{ object.calificacion_set.count }} users)
+            </div>
+
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card shadow-sm p-4 h-100 bg-light">
+                <h4 class="card-title mb-3 fw-bold">Ingredientes</h4>
+                
+                <ul class="list-unstyled mb-0">
+                    <div class="text-start">
+                        {{ object.ingredientes|linebreaks|safe }}
+                    </div>
+                </ul>
+                </div>
+        </div>
+    </div> 
+    <div class="row">
+    <div class="col-lg-8">
+        <h3 class="mb-4 fw-bold">Instrucciones</h3>
+        
+<ol class="list-group mb-5 instructions-list" style="counter-reset: paso-counter;"> 
+    
+    {% for paso in object.pasos.splitlines %}
+        {% if paso.strip %}
+            <li class="list-group-item d-flex align-items-center">
+                {{ paso.strip|safe }}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ol>
+        </div>
+    </div>
+            
+            <h3 class="mt-5 mb-3 fw-bold">Calificar Receta</h3>
+            
+            {% if user.is_authenticated %}
+                <div class="card card-body mt-3 bg-light shadow-sm">
+                    <form method="POST" action="{% url 'calificar-receta' object.pk %}" class="d-flex align-items-center">
+                        {% csrf_token %}
+                        <select name="puntuacion" class="form-select me-2" style="width: 200px;" required>
+                            <option value="" disabled selected>Selecciona tu puntuación</option>
+                            <option value="1">⭐ 1 Estrella</option>
+                            <option value="2">⭐⭐ 2 Estrellas</option>
+                            <option value="3">⭐⭐⭐ 3 Estrellas</option>
+                            <option value="4">⭐⭐⭐⭐ 4 Estrellas</option>
+                            <option value="5">⭐⭐⭐⭐⭐ 5 Estrellas</option>
+                        </select>
+                        <button type="submit" class="btn btn-info">Enviar Calificación</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="alert alert-warning mt-3">
+                    Debes <a href="{% url 'login' %}">iniciar sesión</a> para calificar esta receta.
+                </div>
+            {% endif %}
+
+        </div>
+        
+        <div class="col-lg-4">
+            </div>
+    </div> </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+# Ignorar archivos y carpetas generados automáticamente
+__pycache__/
+*.pyc
+*.sqlite3 
+
+# Entornos virtuales
+venv/
+env/
+
+# Archivos específicos de Docker/Django
+.DS_Store
+.vscode/
+
+# Archivos de subida de imágenes
+/media
+
+# Archivos de logs y datos temporales
+*.log
+
+# Claves secretas de Django (si las tienes en un archivo local)
+local_settings.py

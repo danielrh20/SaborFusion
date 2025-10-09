@@ -1,0 +1,53 @@
+{% load static %}
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <a href="{% url 'home' %}" class="d-flex align-items-center text-decoration-none gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="#f54a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-chef-hat">
+                <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"></path>
+                <path d="M6 17h12"></path>
+            </svg>
+            <span class="navbar-brand mb-0 h1 fw-bold" style="color: #101828;">SaborFusión</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav gap-3">
+                <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#recetas">Recetas</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}?categoria=Todas">Categorías</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Acerca de</a></li>
+            </ul>
+        </div>
+
+        <div class="d-flex align-items-center">
+            {% if user.is_authenticated %}
+                <a href="{% url 'receta-nueva' %}" class="btn btn-custom me-2">
+                    <i class="bi bi-plus-circle me-1"></i> Subir Receta
+                </a>
+                <a href="{% url 'dashboard' %}" class="btn btn-outline-dark me-2">
+                    <i class="bi bi-person-circle"></i> Mi Panel
+                </a>
+                <form action="{% url 'logout' %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link text-dark text-decoration-none p-0">
+                        Salir
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-custom">
+                    Iniciar Sesión
+                </a>
+            {% endif %}
+        </div>
+        
+    </div>
+</nav>
