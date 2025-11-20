@@ -134,6 +134,13 @@
         .receta-card .text-muted i {
         color: #6b7280;
         }
+
+        /* Estilo específico para la imagen en la tarjeta de categoría si es necesario */
+        .receta-card .category-img-200 {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            height: 200px !important;
+            object-fit: cover;
+        }
         
         /*Navbar -------------------------------------------------------*/
         .category-nav-pills .nav-link {
@@ -465,3 +472,13 @@
     color: #667085;
     font-size: 0.95rem;
 }
+
+.team-card {
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.team-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05) !important;
+}
+

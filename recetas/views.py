@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import ListView
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Max
 from django.contrib.auth import login
 
 # 1. Vista para Listar todas las Recetas (HOME)
@@ -142,22 +142,32 @@ def acerca_de(request):
 
 def lista_categorias(request):
     """
-    Vista para mostrar una lista de todas las categorías de recetas disponibles,
-    junto con el número de recetas en cada categoría.
+    Vista para mostrar una lista de todas las categorías,
+    incluyendo el número de recetas y la imagen de la receta más reciente.
     """
-    # Obtener todas las categorías únicas y contar las recetas en cada una
-    # Esto creará un QuerySet como:
-    # [{'categoria': 'Pasta', 'num_recetas': 5}, {'categoria': 'Ensalada', 'num_recetas': 3}]
-    categorias_con_conteo = Receta.objects.values('categoria').annotate(num_recetas=Count('categoria')).order_by('categoria')
+    # 1. Obtener todas las categorías únicas y contar las recetas.
+    categorias_con_conteo = Receta.objects.values('categoria').annotate(
+        num_recetas=Count('categoria')
+    ).order_by('categoria')
 
-    # Si quieres una imagen representativa para cada categoría, podrías añadir
-    # un campo 'imagen_categoria' al modelo Receta o tener un diccionario
-    # en settings.py o en esta vista para mapear categorías a imágenes.
-    # Por ahora, solo usaremos placeholder o una imagen genérica.
+    # 2. Obtener la imagen de la receta más reciente para cada categoría.
+    #    Obtenemos todas las recetas, ordenadas por fecha descendente.
+    recetas_por_categoria = Receta.objects.order_by('categoria', '-fecha_creacion').distinct('categoria')
 
+    # 3. Crear un diccionario de mapeo {categoria: url_imagen}
+    imagen_mapeo = {
+        receta.categoria: receta.imagen.url
+        for receta in recetas_por_categoria
+    }
+    
+    # 4. Combinar los datos.
+    for item in categorias_con_conteo:
+        # Añadir la URL de la imagen al diccionario de la categoría
+        item['imagen_url'] = imagen_mapeo.get(item['categoria'], None)
+        
     context = {
         'categorias': categorias_con_conteo,
-        'page_title': 'Categorías de Recetas' # Para usar en el base.html
+        'page_title': 'Categorías de Recetas'
     }
     return render(request, 'recetas/categorias.html', context)
     

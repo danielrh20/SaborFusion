@@ -1,118 +1,130 @@
 {% extends "recetas/base.html" %}
 {% load static %}
 {% block content %}
-<section class="about-hero-section py-5 text-center">
-    <div class="container">
-        <span class="hero-icon-flame">🔥</span>
-        <h1 class="display-4 fw-bold mb-3">Acerca de SaborFusión</h1>
-        <p class="lead mb-4">
+
+<section class="category-hero-section py-6 text-center pt-8" style="background-color: #f5e9e4;"> 
+    <div class="container py-4">
+        
+        <h2 class="display-4 fw-bold mb-3 d-inline-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 -2 24 24" fill="none"
+                stroke="#f54a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-chef-hat me-3" style="margin-top: -5px;">
+                <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"></path>
+                <path d="M6 17h12"></path>
+            </svg>
+            Acerca de SaborFusión
+        </h2>
+        
+        <p class="text-muted mx-auto interlineado-lg" style="max-width: 800px;">
             Nos apasiona unir a las personas a través del arte de cocinar. Nuestra plataforma 
             conecta amantes de la comida con chefs expertos y cocineros caseros de todo el mundo, 
             compartiendo recetas que inspiran y deleitan.
         </p>
-        <p class="slogan-text">
-            ❤️ Hecho con amor para entusiastas de la comida en todo el mundo
-        </p>
+        
+        <div class="d-flex justify-content-center align-items-center fw-bold mt-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" 
+                 fill="#f54a00" stroke="none" stroke-width="2" 
+                 stroke-linecap="round" stroke-linejoin="round" 
+                 class="lucide lucide-heart me-2" aria-hidden="true">
+                 <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+            </svg>
+            <span class="small" style="color: #f54a00;">
+                Hecho con amor para entusiastas de la comida en todo el mundo
+            </span>
+        </div>
     </div>
 </section>
 
-<section class="stats-section py-5 bg-white">
+<section class="stats-section py-5">
     <div class="container">
         <div class="row text-center">
-            <div class="col-md-3 stat-item">
-                <span class="stat-icon display-4">🧑‍🤝‍🧑</span>
-                <h3 class="display-5 fw-bold">50K+</h3>
-                <p class="text-muted">Usuarios Activos</p>
+            <div class="col-6 col-md-3 stat-item py-3">
+                <h3 class="h1 fw-bold mb-0">50K+</h3>
+                <p class="text-muted small">Usuarios Activos</p>
             </div>
-            <div class="col-md-3 stat-item">
-                <span class="stat-icon display-4">📚</span>
-                <h3 class="display-5 fw-bold">1,000+</h3>
-                <p class="text-muted">Recetas</p>
+            <div class="col-6 col-md-3 stat-item py-3">
+                <h3 class="h1 fw-bold mb-0">1,000+</h3>
+                <p class="text-muted small">Recetas</p>
             </div>
-            <div class="col-md-3 stat-item">
-                <span class="stat-icon display-4">👨‍🍳</span>
-                <h3 class="display-5 fw-bold">200+</h3>
-                <p class="text-muted">Chefs Expertos</p>
+            <div class="col-6 col-md-3 stat-item py-3">
+                <h3 class="h1 fw-bold mb-0">200+</h3>
+                <p class="text-muted small">Chefs Expertos</p>
             </div>
-            <div class="col-md-3 stat-item">
-                <span class="stat-icon display-4">🌍</span>
-                <h3 class="display-5 fw-bold">25+</h3>
-                <p class="text-muted">Países</p>
+            <div class="col-6 col-md-3 stat-item py-3">
+                <h3 class="h1 fw-bold mb-0">25+</h3>
+                <p class="text-muted small">Países</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="mission-section py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6 order-md-2">
-                <img src="{% static 'recetas/img/working-couples-dinner-ideas_36a30f7b-9499-464d-b50a-23329d4fc233.webp' %}" alt="Pareja cocinando" class="img-fluid rounded shadow-lg">
+<section class="mission-section py-2">
+    <div class="container py-5">
+        <div class="row align-items-center justify-content-center">
+            
+            <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+                <img src="{% static 'recetas/img/working-couples-dinner-ideas_36a30f7b-9499-464d-b50a-23329d4fc233.webp' %}" 
+                     alt="Pareja cocinando" 
+                     class="img-fluid rounded shadow-lg">
             </div>
-            <div class="col-md-6 order-md-1">
-                <h2 class="section-title mb-4">Nuestra Misión</h2>
-                <p>En SaborFusión, creemos que la buena comida tiene el poder de unir a las personas, crear recuerdos duraderos y celebrar culturas de todo el mundo. Nuestra misión es hacer que cocinar sea accesible, divertido e inspirador para todos.</p>
-                <p>Curamos cuidadosamente recetas de chefs profesionales y cocineros caseros apasionados, asegurándonos de que cada plato no solo sea delicioso, sino también alcanzable en tu propia cocina. Desde cenas rápidas entre semana hasta banquetes espectaculares de días festivos, estamos aquí para guiarte en cada paso del camino.</p>
-                <p class="text-muted small">Ya seas un principiante completo o un cocinero experimentado en busca de nueva inspiración, SaborFusión te proporciona las herramientas, técnicas y apoyo comunitario que necesita para tener éxito en la cocina.</p>
+            
+            <div class="col-md-6 order-md-1 pe-md-5">
+                <h2 class="section-title fw-bold mb-4">Nuestra Misión</h2>
+                <p class="text-muted">En SaborFusión, creemos que la buena comida tiene el poder de unir a las personas, crear recuerdos duraderos y celebrar culturas de todo el mundo. Nuestra misión es hacer que cocinar sea accesible, divertido e inspirador para todos.</p>
+                <p class="text-muted">Curamos cuidadosamente recetas de chefs profesionales y cocineros caseros apasionados, asegurándonos de que cada plato no solo sea delicioso, sino también alcanzable en tu propia cocina.</p>
+                <p class="text-muted">Ya seas un principiante completo o un cocinero experimentado en busca de nueva inspiración, SaborFusión te proporciona las herramientas, técnicas y apoyo comunitario que necesita para tener éxito en la cocina.</p>
             </div>
         </div>
     </div>
 </section>
 
 <section class="team-section py-5 bg-light">
-    <div class="container">
-        <h2 class="section-title text-center mb-2">Conocé Nuestro Equipo</h2>
-        <p class="section-subtitle text-center mb-5">
+    <div class="container py-4">
+        <h2 class="section-title text-center fw-bold mb-2">Conocé Nuestro Equipo</h2>
+        <p class="section-subtitle text-center text-muted mb-5 mx-auto" style="max-width: 600px;">
             Nuestro diverso equipo de expertos culinarios, nutricionistas y entusiastas de la comida 
             trabajan juntos para traerte las mejores recetas y orientación culinaria.
         </p>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+            
+            {% for i in "123" %} {# Usamos un loop simple para simular los 3 miembros #}
             <div class="col">
-                <div class="team-card text-center p-4 h-100">
-                    <div class="icon-placeholder mb-3">🧑‍🍳</div>
-                    <p class="person-name fw-bold">Persona 1</p>
-                    <h5 class="role-title">Chef Principal y Desarrollador de Recetas</h5>
-                    <p class="description small text-muted">Más de 15 años de experiencia culinaria con especialización en cocina mediterránea e italiana.</p>
+                <div class="card team-card text-center p-4 h-100 shadow-sm border-0">
+                    <div class="mx-auto rounded-circle bg-gray-300 mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                        <span class="fs-2 text-muted">👤</span>
+                    </div>
+                    <p class="person-name fw-bold mb-1">Persona {{ i }}</p>
+                    <h5 class="role-title h6 mb-2 text-orange">{% if i == '1' %}Chef Principal{% elif i == '2' %}Nutricionista{% else %}Chef Repostero{% endif %}</h5>
+                    <p class="description small text-muted">
+                        {% if i == '1' %}Más de 15 años de experiencia culinaria con especialización en cocina mediterránea e italiana.{% elif i == '2' %}Nutricionista certificada que ayuda a crear recetas saludables y balanceadas para cada estilo de vida.{% else %}Chef repostero galardonado especializado en postres franceses.{% endif %}
+                    </p>
                 </div>
             </div>
-            <div class="col">
-                <div class="team-card text-center p-4 h-100">
-                    <div class="icon-placeholder mb-3">🍎</div>
-                    <p class="person-name fw-bold">Persona 2</p>
-                    <h5 class="role-title">Nutricionista y Experto en Salud</h5>
-                    <p class="description small text-muted">Nutricionista certificada que ayuda a crear recetas saludables y balanceadas para cada estilo de vida.</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="team-card text-center p-4 h-100">
-                    <div class="icon-placeholder mb-3">🍰</div>
-                    <p class="person-name fw-bold">Persona 3</p>
-                    <h5 class="role-title">Chef Repostero y Especialista en Postres</h5>
-                    <p class="description small text-muted">Chef repostero galardonado especializado en postres franceses y creaciones dulces innovadoras.</p>
-                </div>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </section>
 
 <section class="values-section py-5">
-    <div class="container">
-        <h2 class="section-title text-center mb-5">Nuestros Valores</h2>
+    <div class="container py-4">
+        <h2 class="section-title text-center fw-bold mb-5">Nuestros Valores</h2>
         <div class="row text-center">
             <div class="col-md-4 value-item">
-                <span class="value-icon mb-3" style="color: #f59f00;">🧡</span>
-                <h4 class="fw-bold">Pasión</h4>
-                <p class="text-muted">Nos motiva nuestro amor por la comida y la alegría que trae a la vida de las personas.</p>
+                <span class="value-icon mb-3 fs-3" style="color: #f59f00;">🧡</span>
+                <h4 class="fw-bold h5">Pasión</h4>
+                <p class="text-muted small">Nos motiva nuestro amor por la comida y la alegría que trae a la vida de las personas.</p>
             </div>
             <div class="col-md-4 value-item">
-                <span class="value-icon mb-3" style="color: #2c974b;">🧑‍🤝‍🧑</span>
-                <h4 class="fw-bold">Comunidad</h4>
-                <p class="text-muted">Construyendo conexiones entre cocineros y amantes de la comida alrededor del mundo.</p>
+                <span class="value-icon mb-3 fs-3" style="color: #2c974b;">🧑‍🤝‍🧑</span>
+                <h4 class="fw-bold h5">Comunidad</h4>
+                <p class="text-muted small">Construyendo conexiones entre cocineros y amantes de la comida alrededor del mundo.</p>
             </div>
             <div class="col-md-4 value-item">
-                <span class="value-icon mb-3" style="color: #0d6efd;">🏆</span>
-                <h4 class="fw-bold">Calidad</h4>
-                <p class="text-muted">Cada receta es probada y perfeccionada para asegurar la mejor experiencia culinaria.</p>
+                <span class="value-icon mb-3 fs-3" style="color: #0d6efd;">🏆</span>
+                <h4 class="fw-bold h5">Calidad</h4>
+                <p class="text-muted small">Cada receta es probada y perfeccionada para asegurar la mejor experiencia culinaria.</p>
             </div>
         </div>
     </div>

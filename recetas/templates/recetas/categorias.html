@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block content %}
-<section class="category-hero-section py-5 text-center">
-    <div class="container">
+<section class="category-hero-section py-6 text-center pt-8" style="background-color: #f5e9e4;"> 
+    <div class="container mb-5">
+        
         <h1 class="display-4 fw-bold mb-3">Categorías de Recetas</h1>
-        <p class="lead mb-4 text-muted">
+        
+        <p class="text-muted mx-auto interlineado-lg" style="max-width: 800px;">
             Explora nuestra diversa colección de recetas organizadas por categoría. Desde 
             entradas rápidas hasta postres decadentes, encuentra exactamente lo que se te antoja.
         </p>
@@ -14,27 +16,24 @@
 
 <section class="categories-grid-section py-5 bg-light">
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4"> 
             {% for categoria_item in categorias %}
             <div class="col">
-                <a href="{% url 'home' %}?categoria={{ categoria_item.categoria }}" class="category-card-link">
-                    <div class="card h-100 category-card shadow-sm">
-                        {# IMAGEN DE LA CATEGORÍA - Puedes usar un diccionario en views.py para mapear categorías a imágenes #}
-                        {# Por ahora, usamos un placeholder o una imagen por defecto #}
-                        {% if categoria_item.categoria == 'Pasta' %}
-                        <img src="{% static 'recetas/img/category_pasta.jpg' %}" class="card-img-top category-img" alt="Categoría {{ categoria_item.categoria }}">
-                        {% elif categoria_item.categoria == 'Ensalada' %}
-                        <img src="{% static 'recetas/img/category_salad.jpg' %}" class="card-img-top category-img" alt="Categoría {{ categoria_item.categoria }}">
-                        {% elif categoria_item.categoria == 'Postre' %}
-                        <img src="{% static 'recetas/img/category_dessert.jpg' %}" class="card-img-top category-img" alt="Categoría {{ categoria_item.categoria }}">
+                <a href="{% url 'todas-recetas' %}?categoria={{ categoria_item.categoria }}" class="category-card-link text-decoration-none">
+                    <div class="card h-100 shadow-sm receta-card border-0"> 
+                        
+                        {% if categoria_item.imagen_url %}
+                        <img src="{{ categoria_item.imagen_url }}" class="card-img-top receta-img" 
+                             alt="Imagen de {{ categoria_item.categoria }}" style="height: 250px;"> 
                         {% else %}
-                        <img src="{% static 'recetas/img/category_placeholder.jpg' %}" class="card-img-top category-img" alt="Categoría {{ categoria_item.categoria }}">
+                        <img src="{% static 'recetas/img/category_placeholder.jpg' %}" class="card-img-top receta-img" 
+                             alt="Sin imagen" style="height: 250px; object-fit: cover;">
                         {% endif %}
                         
-                        <div class="card-body text-center d-flex flex-column justify-content-between">
-                            <h5 class="card-title fw-bold mt-2">{{ categoria_item.categoria }}</h5>
+                        <div class="card-body text-center d-flex flex-column">
+                            <h5 class="card-title fw-bold mt-2 text-dark">{{ categoria_item.categoria }}</h5>
                             <p class="card-text text-muted">{{ categoria_item.num_recetas }} recetas disponibles</p>
-                            <a href="{% url 'home' %}?categoria={{ categoria_item.categoria }}" class="btn btn-outline-primary btn-sm mt-3">Explorar</a>
+                            <span class="btn btn-outline-primary btn-sm mt-3 stretched-link">Explorar Categoría</span>
                         </div>
                     </div>
                 </a>

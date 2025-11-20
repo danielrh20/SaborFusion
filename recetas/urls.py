@@ -22,6 +22,8 @@ urlpatterns = [
     path('categorias/', views.lista_categorias, name='lista_categorias'),
     
     
+    
+    
     # Pendientes: Actualizar (Editar) y Borrar (Eliminar)
     # path('receta/<int:pk>/editar/', views.RecetaUpdateView.as_view(), name='receta-editar'),
     # path('receta/<int:pk>/borrar/', views.RecetaDeleteView.as_view(), name='receta-borrar'),

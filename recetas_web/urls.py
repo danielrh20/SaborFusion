@@ -10,6 +10,7 @@ urlpatterns = [
     path('registro/', lambda request: None, name='registro'),
     path('perfil/mis-recetas/', lambda request: None, name='dashboard'), 
     path('accounts/', include('django.contrib.auth.urls')), 
+    
 ]
 
 # Configuración para servir archivos multimedia (imágenes) en desarrollo
