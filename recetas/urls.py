@@ -1,11 +1,13 @@
 from django.urls import path
 from . import views 
-from .views import RegistroUsuario 
+from .views import RegistroUsuario, TodasLasRecetasListView
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     # HOME: Muestra el listado de todas las recetas
     path('', views.RecetaListView.as_view(), name='home'), 
+
+    path('recetas/', views.TodasLasRecetasListView.as_view(), name='todas-recetas'),
     
     # DETALLE: Muestra una receta específica por su ID (pk)
     path('receta/<int:pk>/', views.RecetaDetailView.as_view(), name='receta-detalle'),
@@ -16,6 +18,8 @@ urlpatterns = [
     path('registro/', views.RegistroUsuario.as_view(), name='registro'), 
     path('perfil/mis-recetas/', views.DashboardView.as_view(), name='dashboard'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    path('acerca-de/', views.acerca_de, name='acerca_de'),
+    path('categorias/', views.lista_categorias, name='lista_categorias'),
     
     
     # Pendientes: Actualizar (Editar) y Borrar (Eliminar)

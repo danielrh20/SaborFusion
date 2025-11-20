@@ -1,27 +1,60 @@
 .receta-card {
-            height: 100%; /* Permite que las tarjetas se adapten */
+            height: 100%; 
             display: flex;
             flex-direction: column;
         }
         .receta-img {
-            height: 200px; /* Altura fija para la imagen */
+            height: 200px; 
             object-fit: cover;
             width: 100%;
         }
         .receta-card .card-body {
-            flex-grow: 1; /* Permite que el cuerpo ocupe el espacio restante */
+            flex-grow: 1; 
         }
         .receta-card .card-footer {
-            margin-top: auto; /* Empuja el footer hacia abajo */
+            margin-top: auto; 
         }
         .hero-section {
-            background: linear-gradient(to right, #fff5ee, #fef3f0);
+            background: linear-gradient(to right, #fff5ee, #ffcec0);
             padding: 200px 0;
         }
 
+        .hero-section .hero-image-wrapper {
+        position: relative; 
+        display: block; 
+        }
+
+        .floating-tag {
+        position: absolute; 
+        
+        background-color: white;
+        padding: 10px 15px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        font-size: 0.85rem;
+        line-height: 1.2;
+        text-align: center;
+        color: #333;
+        z-index: 10; 
+        min-width: 120px;
+
+        /* --- PROPIEDADES DE ANIMACIÓN --- */
+        animation: wiggleFloat 3s ease-in-out infinite; /* Nombre, duración, tipo, repetición */
+    }
+
+    .tag-top-right {   
+        top: 5%;          
+        right: 88%;   
+    }
+    .tag-bottom-right {
+        bottom: 5%;           
+        right: -5%; 
+        animation-delay: 0.10s; /* La animación de esta etiqueta empezará medio segundo después */
+    }
+
         /* === Tarjetas de Recetas === */
         .receta-card {
-        border: none;
+        border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 12px;
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -29,6 +62,7 @@
 
         .receta-card:hover {
         transform: translateY(-5px);
+
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
         }
 
@@ -38,25 +72,24 @@
         }
 
         .badge-dificultad {
-            /* Base style for the new badge */
-        font-size: 0.75rem; /* Hace la fuente un poco más pequeña */
+        font-size: 0.75rem; 
         font-weight: 600;
         padding: 0.3em 0.6em;
         border-radius: 6px;
         }
 
         .dificultad-FACIL {
-        background-color: #28a745; /* Verde Bootstrap */
+        background-color: #28a745; 
         color: white;
         }
 
         .dificultad-MEDIO {
-        background-color: #ffc107; /* Amarillo/Dorado Bootstrap */
-        color: #212529; /* Texto oscuro para contraste */
+        background-color: #ffc107; 
+        color: #212529; 
         }
 
         .dificultad-DIFICIL {
-        background-color: #dc3545; /* Rojo Bootstrap */
+        background-color: #dc3545; 
         color: white;
         }
 
@@ -309,3 +342,126 @@
   font-size: 1.8rem;
 }
 
+/* --- ESTILOS DE ACERCA DE --- */
+
+/* Títulos y subtítulos generales */
+.section-title {
+    font-size: 2.5rem;
+    color: #101828;
+}
+
+.section-subtitle {
+    color: #667085;
+}
+
+/* Sección de Estadísticas */
+.stats-section .stat-item {
+    padding: 20px;
+}
+.stats-section .stat-icon {
+    /* Aquí se puede definir un círculo de fondo para el icono si se desea */
+    font-size: 3rem; 
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* Sección Nuestro Equipo */
+.team-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.team-card .icon-placeholder {
+    font-size: 4rem; /* Tamaño grande para el icono de persona */
+    color: #999;
+}
+.team-card .person-name {
+    color: #f54a00; /* Color destacado del tema */
+    margin-top: -10px;
+}
+.team-card .role-title {
+    font-size: 1.1rem;
+    color: #101828;
+}
+
+/* Sección Nuestros Valores */
+.values-section .value-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+/* --- ANIMACIÓN DE WIGGLE FLOAT --- */
+@keyframes wiggleFloat {
+    0% {
+        transform: translateY(0px); /* Posición inicial */
+    }
+    50% {
+        transform: translateY(-8px); /* Sube 8px */
+    }
+    100% {
+        transform: translateY(0px); /* Vuelve a la posición inicial */
+    }
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA LA PÁGINA DE CATEGORÍAS --- */
+
+.category-hero-section {
+    background-color: #f8f9fa; /* Un fondo sutil para la sección hero */
+    padding: 80px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.category-hero-section h1 {
+    color: #101828;
+}
+
+.categories-grid-section {
+    background-color: #fdfcfb; /* Fondo muy claro para contrastar */
+}
+
+/* Estilo para las tarjetas de categoría (similar a las de receta) */
+.category-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Asegura que todo el enlace sea clicable */
+    height: 100%; /* Para que la tarjeta ocupe el espacio del grid */
+}
+
+.category-card {
+    border: none; /* Eliminar el borde de Bootstrap */
+    border-radius: 12px;
+    overflow: hidden; /* Asegura que la imagen tenga bordes redondeados */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.category-card:hover {
+    transform: translateY(-5px); /* Efecto de levitar al pasar el ratón */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra más grande al hover */
+}
+
+.category-img {
+    height: 200px; /* Altura fija para las imágenes de categoría */
+    object-fit: cover; /* Recorta la imagen para que cubra el área */
+    width: 100%;
+    border-radius: 12px 12px 0 0; /* Solo bordes superiores redondeados */
+}
+
+.category-card .card-body {
+    padding: 20px;
+    background-color: white;
+    border-radius: 0 0 12px 12px; /* Solo bordes inferiores redondeados */
+}
+
+.category-card .card-title {
+    color: #101828;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.category-card .card-text {
+    color: #667085;
+    font-size: 0.95rem;
+}

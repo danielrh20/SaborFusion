@@ -1,0 +1,137 @@
+{# recetas/templates/recetas/todas_las_recetas.html #}
+{% extends 'recetas/base.html' %}
+{% load static %}
+
+{% block title %}Todas las Recetas{% endblock %}
+
+{% block content %}
+    
+    <div class="container text-center py-5">
+        <h1 class="display-4 fw-bold mb-3" style="color: #101828;">
+            Todas las Recetas
+        </h1>
+        <p class="text-lg text-gray-600 max-w-xl mx-auto mb-5">
+            Descubre nuestra colección completa de recetas deliciosas. Filtra por categoría, dificultad, o busca ingredientes específicos.
+        </p>
+
+        {# Sección de Búsqueda y Filtros #}
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8 col-lg-6">
+                
+                <form action="{% url 'todas-recetas' %}" method="GET" class="input-group mb-4">
+                    <input type="text" 
+                        name="q"  class="form-control"
+                        placeholder="Busca recetas, ingredientes o categorías..." 
+                        value="{{ request.GET.q }}">
+                    <button class="btn btn-dark" type="submit">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
+                </form>
+
+                {# Filtros de Categoría, Dificultad, etc. #}
+                <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+                    <span class="text-muted">Filtros:</span>
+                    <a href="{% url 'todas-recetas' %}"
+                        class="btn btn-sm btn-outline-secondary {% if not request.GET.categoria %}active{% endif %}">
+                        Todas las Categorías
+                    </a>
+                    {# Bucle para las categorías de tu RecetaListView #}
+                    {% for categoria_value, categoria_label in categorias_disponibles %}
+                        <a href="{% url 'todas-recetas' %}?categoria={{ categoria_value }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                            class="btn btn-sm btn-outline-secondary {% if request.GET.categoria == categoria_value %}active{% endif %}">
+                            {{ categoria_label }}
+                        </a>
+                    {% endfor %}
+                    
+                    {# Puedes añadir más filtros aquí (ej. Nivel y Calificadas) #}
+                    <button class="btn btn-sm btn-outline-secondary">Todos los Niveles</button>
+                    <button class="btn btn-sm btn-outline-secondary">Mejor Calificadas</button>
+                </div>
+
+            </div>
+        </div>
+        
+        <hr>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="h4 mb-0">Resultados de Recetas ({{ recetas.paginator.count }} encontradas)</h2>
+            <div class="dropdown">
+                {# Opción para ordenar si la implementas en la vista #}
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    Ordenar por...
+                </button>
+            </div>
+        </div>
+
+        {# LISTADO DE RECETAS - Se muestran 8 por la paginación de la vista #}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5">
+            {# A diferencia de home.html, aquí usamos todo el QuerySet (ya paginado a 8) #}
+            {% for receta in recetas %} 
+            <div class="col">
+                <div class="card h-100 receta-card shadow-sm">
+                    <img src="{{ receta.imagen.url }}" class="card-img-top receta-img" alt="{{ receta.titulo }}">
+                    <div class="card-body d-flex flex-column">
+                    <div class="d-flex gap-2 mb-2">
+                        <span class="badge badge-categoria text-white">{{ receta.categoria }}</span> 
+                        <span class="badge badge-dificultad dificultad-{{ receta.dificultad }}">
+                            {{ receta.get_dificultad_display }}
+                        </span>
+                    </div>
+                    
+                    <h5 class="card-title">{{ receta.titulo }}</h5>
+                    <p class="card-text text-muted">{{ receta.descripcion|truncatechars:80 }}</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center small text-muted">
+                            <div>
+                                <i class="bi bi-clock me-1"></i> {{ receta.tiempo_preparacion|default:'N/A' }} 
+                                <i class="bi bi-person-fill ms-2 me-1"></i> {{ receta.porciones|default:'N/A' }} 
+                            </div>
+                            <div>
+                                {% if receta.promedio_calificacion > 0 %}
+                                    <i class="bi bi-star-fill text-warning"></i> {{ receta.promedio_calificacion|floatformat:1 }}
+                                {% else %}
+                                    <span class="text-muted">Sin calificar</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pt-0">
+                        <a href="{% url 'receta-detalle' receta.pk %}" class="btn btn-sm btn-outline-primary w-100 mt-2">Ver Receta</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <div class="alert alert-info col-12" role="alert">
+                    No se encontraron recetas que coincidan con tu búsqueda o filtros.
+                </div>
+            {% endfor %}
+        </div>
+
+        {# PAGINACIÓN COMPLETA #}
+        {% if is_paginated %}
+            <nav aria-label="Navegación de páginas">
+                <ul class="pagination justify-content-center">
+                    {% if recetas.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ recetas.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}">Anterior</a>
+                        </li>
+                    {% endif %}
+
+                    {% for i in recetas.paginator.page_range %}
+                        {% if recetas.number == i %}
+                            <li class="page-item active" aria-current="page"><span class="page-link">{{ i }}</span></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if recetas.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ recetas.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}">Siguiente</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div> 
+
+{% endblock %}

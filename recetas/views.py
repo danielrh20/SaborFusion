@@ -3,12 +3,12 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import Receta, Calificacion
 from django.contrib.auth.mixins import LoginRequiredMixin # Para restringir acceso
 from django.contrib.auth.decorators import login_required # Para la nueva vista
-from django.contrib import messages # Para enviar mensajes al usuario
+from django.contrib import messages # type: ignore # Para enviar mensajes al usuario
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import ListView
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.contrib.auth import login
 
 # 1. Vista para Listar todas las Recetas (HOME)
@@ -131,3 +131,42 @@ class RegistroUsuario(CreateView):
         user = form.save()
         login(self.request, user)
         return response
+    
+# 7. Nueva Vista para la página Acerca de
+def acerca_de(request):
+    """Renderiza la página Acerca de."""
+    # Nota: El template que creamos fue 'acerca_de.html'.
+    # Si estás siguiendo las convenciones de Django, debería estar en 'recetas/acerca_de.html'.
+    return render(request, 'recetas/acerca_de.html', {})
+
+
+def lista_categorias(request):
+    """
+    Vista para mostrar una lista de todas las categorías de recetas disponibles,
+    junto con el número de recetas en cada categoría.
+    """
+    # Obtener todas las categorías únicas y contar las recetas en cada una
+    # Esto creará un QuerySet como:
+    # [{'categoria': 'Pasta', 'num_recetas': 5}, {'categoria': 'Ensalada', 'num_recetas': 3}]
+    categorias_con_conteo = Receta.objects.values('categoria').annotate(num_recetas=Count('categoria')).order_by('categoria')
+
+    # Si quieres una imagen representativa para cada categoría, podrías añadir
+    # un campo 'imagen_categoria' al modelo Receta o tener un diccionario
+    # en settings.py o en esta vista para mapear categorías a imágenes.
+    # Por ahora, solo usaremos placeholder o una imagen genérica.
+
+    context = {
+        'categorias': categorias_con_conteo,
+        'page_title': 'Categorías de Recetas' # Para usar en el base.html
+    }
+    return render(request, 'recetas/categorias.html', context)
+    
+    # 8. Nueva Vista para "Todas las Recetas" (Página principal del menú)
+class TodasLasRecetasListView(RecetaListView):
+    """
+    Hereda de RecetaListView. Sobrescribe el template y la paginación.
+    - Usa 'recetas/todas_las_recetas.html' para el diseño de listado completo.
+    - Muestra 8 recetas por página (en lugar de las 4 del home/destacadas).
+    """
+    template_name = 'recetas/todas_las_recetas.html' # ⬅️ Nuevo Template
+    paginate_by = 8 # ⬅️ 8 recetas por página
